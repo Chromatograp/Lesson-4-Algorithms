@@ -1,4 +1,5 @@
 import timeit
+import sys
 
 print('Задание 2.')
 
@@ -55,3 +56,21 @@ if way_1 < way_2:
     print(f'Алгоритм 1, время {way_1} секунд, алгоритм 2, время {way_2} секунд. Первый алгоритм лучше.')
 else:
     print(f'Алгоритм 1, время {way_1} секунд, алгоритм 2, время {way_2} секунд. Второй алгоритм лучше.')
+
+
+def Size(x, level=0):
+    print('\t' * level, f'object={x}, type={x.__class__}, size={sys.getsizeof(x)}')
+    if hasattr(x, '__iter__'):
+        if hasattr(x, 'items'):
+            for xx in x.items():
+                Size(xx, level + 1)
+        elif not isinstance(x, str):
+            for xx in x:
+                Size(xx, level + 1)
+
+
+size_1 = Size(n)
+size_2 = Size(index)
+size_3 = Size(way_1)
+size_4 = Size(way_2)
+print(f'{size_1}\n{size_2}\n{size_3}\n{size_4}')

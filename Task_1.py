@@ -1,4 +1,5 @@
 import timeit
+import sys
 
 print('Задание 1.')
 
@@ -60,3 +61,18 @@ elif minimum_2 < minimum_1 < minimum_3 or minimum_2 < minimum_3 < minimum_1:
     print(f'Функция Minimum_2 занимает {minimum_2} секунд - наименьшее количество времени за счет наименьшего количества итераций.')
 elif minimum_3 < minimum_1 < minimum_2 or minimum_3 < minimum_2 < minimum_1:
     print(f'Функция Minimum_3 занимает {minimum_3} секунд - наименьшее количество времени за счет наименьшего количества итераций.')
+
+
+def Size(x, level=0):
+    print('\t' * level, f'object={x}, type={x.__class__}, size={sys.getsizeof(x)}')
+    if hasattr(x, '__iter__'):
+        if hasattr(x, 'items'):
+            for xx in x.items():
+                Size(xx, level + 1)
+        elif not isinstance(x, str):
+            for xx in x:
+                Size(xx, level + 1)
+
+
+size = Size(list)
+print(size)
